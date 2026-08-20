@@ -1,0 +1,117 @@
+/* Art direction layer: the interface shifts with the currently selected AI role. */
+.app-shell {
+  --role-a: rgba(138, 102, 255, .38);
+  --role-b: rgba(88, 215, 255, .19);
+  --role-line: rgba(181, 162, 255, .3);
+  transition: background 900ms ease, color 400ms ease;
+}
+
+.app-shell.theme-cyan { --role-a: rgba(52, 196, 255, .34); --role-b: rgba(107, 236, 255, .23); --role-line: rgba(102, 224, 255, .36); }
+.app-shell.theme-coral { --role-a: rgba(255, 126, 123, .30); --role-b: rgba(253, 180, 116, .17); --role-line: rgba(255, 169, 137, .36); }
+.app-shell.theme-violet { --role-a: rgba(142, 105, 255, .38); --role-b: rgba(91, 215, 255, .19); --role-line: rgba(186, 164, 255, .34); }
+
+.app-shell::before {
+  content: '';
+  position: fixed;
+  z-index: 0;
+  width: 56vw;
+  height: 56vw;
+  left: -19vw;
+  top: 21vh;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: .52;
+  background: radial-gradient(circle, var(--role-a) 0, var(--role-b) 27%, transparent 67%);
+  filter: blur(20px);
+  transition: background 900ms ease;
+  animation: atmosphereDrift 15s ease-in-out infinite alternate;
+}
+
+.app-shell::after {
+  content: '';
+  position: fixed;
+  z-index: 0;
+  width: 42vw;
+  height: 42vw;
+  right: -18vw;
+  bottom: -9vw;
+  pointer-events: none;
+  border: 1px solid var(--role-line);
+  border-radius: 50%;
+  box-shadow: 0 0 0 48px color-mix(in srgb, var(--role-a), transparent 88%), 0 0 0 96px color-mix(in srgb, var(--role-b), transparent 91%);
+  opacity: .52;
+  animation: atmosphereSpin 44s linear infinite;
+}
+
+.app-shell > .site-header { z-index: 10; }
+.app-shell > main,
+.app-shell > footer { position: relative; z-index: 1; }
+.app-shell > .global-atmosphere, .app-shell > .film-grain, .app-shell > .constellation, .app-shell > .plasma-cursor { z-index: 40; }
+
+/* Modal windows use a higher layer than the landing page. Keep the custom
+   cursor above them as well, while pointer-events stay disabled on the canvas. */
+.app-shell > .plasma-cursor { z-index: 120; }
+.app-shell > .section-rail { z-index: 44; }
+
+/* A compact visual map of the long landing page. */
+.section-rail {
+  position: fixed;
+  z-index: 44;
+  right: clamp(12px, 2.3vw, 35px);
+  top: 50%;
+  display: grid;
+  gap: 8px;
+  padding: 10px 7px;
+  border: 1px solid rgba(201, 192, 255, .15);
+  border-radius: 99px;
+  background: rgba(9, 10, 26, .43);
+  box-shadow: 0 13px 35px rgba(0,0,0,.18), inset 0 1px rgba(255,255,255,.07);
+  backdrop-filter: blur(13px);
+  transform: translateY(-50%);
+}
+
+.section-rail::before { content: ''; position: absolute; top: 20px; bottom: 20px; left: 50%; width: 1px; background: linear-gradient(transparent, rgba(182, 163, 255, .31), transparent); transform: translateX(-50%); }
+.section-rail button { position: relative; z-index: 1; width: 17px; height: 17px; display: grid; place-items: center; padding: 0; border-radius: 50%; background: transparent; }
+.section-rail button i { width: 5px; height: 5px; display: block; border: 1px solid rgba(224, 218, 255, .56); border-radius: 50%; background: #17152b; transition: .25s ease; }
+.section-rail button span { position: absolute; right: 25px; padding: 5px 7px; border: 1px solid rgba(190, 182, 255, .16); border-radius: 6px; color: #ded9f4; background: rgba(11, 11, 29, .85); box-shadow: 0 7px 18px rgba(0,0,0,.2); font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: .03em; opacity: 0; pointer-events: none; transform: translateX(4px); transition: .2s ease; white-space: nowrap; }
+.section-rail button:hover span { opacity: 1; transform: translateX(0); }.section-rail button:hover i { border-color: #b6e9ff; background: #8cdbff; }.section-rail button.active i { width: 9px; height: 9px; border-color: #e8e2ff; background: radial-gradient(circle at 35% 30%, #fff, #b19aff 42%, #65ddff); box-shadow: 0 0 0 4px rgba(151, 125, 255, .16), 0 0 14px rgba(96, 212, 255, .65); }
+
+.focus-toggle { display: inline-flex; align-items: center; gap: 5px; padding: 8px 9px; color: rgba(219, 214, 240, .72); border: 1px solid transparent; border-radius: 99px; background: transparent; font-family: 'DM Mono', monospace; font-size: 9px; transition: .22s ease; }.focus-toggle:hover, .focus-toggle.on { color: #eaf8ff; border-color: rgba(123, 218, 255, .36); background: rgba(57, 168, 217, .1); }.focus-toggle.on { box-shadow: 0 0 18px rgba(87, 205, 255, .15); }
+
+/* Typography feels luminous without being distracting. */
+.section-heading h2:not(em), .widget-gallery-copy h2, .signature-copy h2, .capabilities-copy h2, .integrations-section h2, .case-head h2 { text-wrap: balance; }
+.section-kicker { text-shadow: 0 0 14px color-mix(in srgb, var(--role-a), transparent 25%); transition: color .7s ease, text-shadow .7s ease; }
+.hero h1 em, .section-heading h2 em, .widget-gallery-copy h2 em, .signature-copy h2 em, .capabilities-copy h2 em, .integrations-section h2 em, .plans-intro h2 em, .case-head h2 em { background-size: 180% auto; animation: wordShimmer 9s ease-in-out infinite; }
+
+@media (min-width: 741px) { .hero h1 em { white-space: nowrap; } }
+
+/* Each major content card gets a tiny contained scene rather than a flat background. */
+.solution-card::after, .plan-card::after, .workflow-grid article::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: 125px;
+  height: 125px;
+  right: -44px;
+  bottom: -55px;
+  border: 1px solid rgba(218, 210, 255, .12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 22px rgba(161, 135, 255, .028), 0 0 0 44px rgba(80, 215, 255, .018);
+  pointer-events: none;
+  transition: transform .55s ease;
+}
+.solution-card:nth-child(2)::after { border-color: rgba(94, 226, 255, .22); }.solution-card:nth-child(3)::after { border-color: rgba(255, 170, 140, .22); }.solution-card:hover::after, .plan-card:hover::after, .workflow-grid article:hover::after { transform: scale(1.35) rotate(40deg); }
+.solution-card > *, .plan-card > *, .workflow-grid article > * { position: relative; z-index: 1; }
+.solution-card:nth-child(1) { background: radial-gradient(circle at 98% 0%, rgba(154, 121, 255, .21), transparent 34%), linear-gradient(145deg, rgba(31,28,61,.9), rgba(10,14,29,.94)); }.solution-card:nth-child(2) { background: radial-gradient(circle at 98% 0%, rgba(66, 212, 255, .16), transparent 34%), linear-gradient(145deg, rgba(17,39,58,.82), rgba(10,14,29,.94)); }.solution-card:nth-child(3) { background: radial-gradient(circle at 98% 0%, rgba(255, 150, 139, .15), transparent 34%), linear-gradient(145deg, rgba(53,27,55,.82), rgba(10,14,29,.94)); }
+.workflow-grid article:nth-child(1) .workflow-visual { filter: drop-shadow(0 0 15px rgba(161, 134, 255, .2)); }.workflow-grid article:nth-child(2) .workflow-visual { filter: drop-shadow(0 0 15px rgba(76, 220, 255, .16)); }.workflow-grid article:nth-child(3) .workflow-visual { filter: drop-shadow(0 0 15px rgba(255, 150, 140, .16)); }
+
+/* Focus is a calmer, presentation-friendly view—not a separate empty theme. */
+.focus-mode .film-grain, .focus-mode .constellation, .focus-mode .section-rail, .focus-mode .aurora-ribbon, .focus-mode .liquid-lens, .focus-mode .orb { opacity: .14 !important; }.focus-mode .hero::before { opacity: .18; }.focus-mode .hero-showcase, .focus-mode .signature-section, .focus-mode .lab-layout { filter: saturate(.88) brightness(.97); }.focus-mode .site-header { background: rgba(7, 8, 18, .48); border-bottom: 1px solid rgba(189, 180, 255, .09); backdrop-filter: blur(15px); }
+
+@keyframes atmosphereDrift { to { transform: translate(13vw, -8vh) scale(1.1); } }
+@keyframes atmosphereSpin { to { transform: rotate(360deg); } }
+@keyframes wordShimmer { 50% { background-position: 100% center; } }
+
+@media (max-width: 1120px) { .section-rail { display: none; } }
+@media (max-width: 740px) { .focus-toggle span { display: none; }.focus-toggle { padding: 8px; }.app-shell::after { display: none; }.app-shell::before { width: 90vw; height: 90vw; left: -45vw; } }
+@media (prefers-reduced-motion: reduce) { .app-shell::before, .app-shell::after, .hero h1 em, .section-heading h2 em, .widget-gallery-copy h2 em, .signature-copy h2 em, .capabilities-copy h2 em, .integrations-section h2 em, .plans-intro h2 em, .case-head h2 em { animation: none !important; } }

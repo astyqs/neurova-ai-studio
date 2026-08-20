@@ -1,0 +1,12 @@
+node_modules/
+dist/
+work/
+.vercel/
+server/data/
+server/data/*.db
+server/data/*.db-shm
+server/data/*.db-wal
+server/.env
+ЗАЩИТА_ДИПЛОМА_NEUROVA.md
+
+.vercel

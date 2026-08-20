@@ -1,0 +1,282 @@
+/* Isolated styles for the account workspace. Keeps dashboard controls readable
+   even when the main landing page styles are changed. */
+.dashboard-tab-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin: 16px 3px 2px;
+}
+
+.dashboard-tab-row button {
+  min-width: 0;
+  border: 1px solid rgba(172, 141, 255, 0.16);
+  border-radius: 10px;
+  padding: 9px 7px;
+  color: rgba(235, 231, 255, 0.76);
+  background: rgba(111, 82, 194, 0.07);
+  font: 700 10px/1 var(--font-sans, Inter, sans-serif);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: 180ms ease;
+}
+
+.dashboard-tab-row button:hover {
+  transform: translateY(-1px);
+  color: #fff;
+  border-color: rgba(163, 125, 255, 0.52);
+  background: rgba(128, 89, 234, 0.2);
+}
+
+.workspace-panel {
+  box-sizing: border-box;
+  margin: 24px 0 8px;
+  padding: clamp(18px, 2.4vw, 28px);
+  border: 1px solid rgba(163, 132, 255, 0.2);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 87% 0%, rgba(76, 190, 255, 0.12), transparent 31%),
+    linear-gradient(135deg, rgba(44, 30, 96, 0.54), rgba(11, 16, 38, 0.76));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.045), 0 18px 55px rgba(3, 2, 20, 0.22);
+}
+
+.workspace-panel h3 {
+  margin: 0 0 6px;
+  color: #f6f2ff;
+  font: 800 clamp(19px, 2vw, 27px)/1.1 var(--font-sans, Inter, sans-serif);
+  letter-spacing: -0.045em;
+}
+
+.workspace-panel > p,
+.panel-note {
+  margin: 0 0 19px;
+  color: rgba(210, 207, 235, 0.59);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.workspace-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.workspace-metrics > div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(163, 132, 255, 0.16);
+  border-radius: 13px;
+  background: rgba(6, 10, 27, 0.36);
+}
+
+/* Analytics is currently rendered as direct metric elements; support that
+   structure as well as future card wrappers. */
+.workspace-metrics > b {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(163, 132, 255, 0.16);
+  border-radius: 13px;
+  background: rgba(6, 10, 27, 0.36);
+}
+
+.workspace-metrics b,
+.workspace-metrics small {
+  display: block;
+}
+
+.workspace-metrics b {
+  overflow: hidden;
+  color: #fff;
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+  text-overflow: ellipsis;
+}
+
+.workspace-metrics small {
+  margin-top: 7px;
+  color: rgba(208, 197, 247, 0.58);
+  font-size: 10px;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.usage-bars {
+  display: flex;
+  align-items: end;
+  gap: 9px;
+  height: 120px;
+  padding: 14px 12px 7px;
+  border: 1px solid rgba(154, 128, 236, 0.14);
+  border-radius: 14px;
+  background: rgba(4, 8, 23, 0.34);
+}
+
+.usage-bars > div {
+  display: grid;
+  flex: 1 1 0;
+  grid-template-rows: 1fr 15px;
+  min-width: 0;
+  height: 100%;
+  align-items: end;
+  gap: 6px;
+}
+
+.usage-bars i {
+  display: block;
+  min-height: 5px;
+  border-radius: 999px 999px 4px 4px;
+  background: linear-gradient(180deg, #bd9dff 0%, #7d62ff 53%, #38d9ff 100%);
+  box-shadow: 0 0 16px rgba(114, 111, 255, 0.35);
+}
+
+.usage-bars small {
+  overflow: hidden;
+  color: rgba(208, 197, 247, 0.54);
+  font-size: 9px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspace-field {
+  display: grid;
+  gap: 8px;
+  max-width: 520px;
+  margin-top: 17px;
+  color: rgba(225, 219, 248, 0.74);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.workspace-field input {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid rgba(166, 137, 255, 0.27);
+  border-radius: 12px;
+  padding: 12px 13px;
+  outline: none;
+  color: #f8f6ff;
+  background: rgba(6, 10, 27, 0.48);
+  font: inherit;
+}
+
+.workspace-field input:focus {
+  border-color: rgba(102, 218, 255, 0.82);
+  box-shadow: 0 0 0 4px rgba(74, 203, 255, 0.11);
+}
+
+.workspace-save,
+.telegram-bots button {
+  border: 1px solid rgba(212, 197, 255, 0.36);
+  border-radius: 11px;
+  padding: 10px 14px;
+  color: #16102c;
+  background: linear-gradient(112deg, #dfc9ff, #8fdfff);
+  box-shadow: 0 8px 22px rgba(111, 92, 255, 0.23);
+  font: 800 12px/1 var(--font-sans, Inter, sans-serif);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.workspace-save { margin-top: 14px; }
+
+.workspace-save:hover,
+.telegram-bots button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 11px 28px rgba(111, 92, 255, 0.36);
+}
+
+.plan-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.plan-picker button {
+  min-width: 104px;
+  border: 1px solid rgba(163, 132, 255, 0.24);
+  border-radius: 12px;
+  padding: 11px 13px;
+  color: rgba(236, 230, 255, 0.84);
+  background: rgba(98, 70, 176, 0.12);
+  font: 800 11px/1 var(--font-sans, Inter, sans-serif);
+  cursor: pointer;
+  transition: 180ms ease;
+}
+
+.plan-picker button:hover {
+  transform: translateY(-2px);
+  color: #fff;
+  border-color: rgba(115, 219, 255, 0.72);
+  background: rgba(87, 156, 238, 0.18);
+}
+
+.plan-picker button b,
+.plan-picker button small {
+  display: block;
+}
+
+.plan-picker button small {
+  margin-top: 5px;
+  color: rgba(221, 215, 246, 0.62);
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.plan-picker button.active {
+  color: #fff;
+  border-color: rgba(112, 221, 255, 0.72);
+  background: linear-gradient(135deg, rgba(126, 92, 235, 0.35), rgba(57, 187, 239, 0.2));
+  box-shadow: 0 8px 21px rgba(89, 100, 232, 0.19);
+}
+
+.telegram-bots {
+  display: grid;
+  gap: 10px;
+}
+
+.telegram-bots > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 14px;
+  border: 1px solid rgba(163, 132, 255, 0.16);
+  border-radius: 13px;
+  background: rgba(6, 10, 27, 0.34);
+}
+
+.telegram-bots strong,
+.telegram-bots span { display: block; }
+.telegram-bots strong { color: #f4f0ff; font-size: 14px; }
+.telegram-bots span { margin-top: 4px; color: rgba(205, 200, 229, 0.57); font-size: 11px; }
+.telegram-bots button { flex: 0 0 auto; padding: 9px 11px; font-size: 10px; }
+
+.telegram-status {
+  margin-top: 18px;
+  padding: 12px 13px;
+  border-left: 2px solid #6ddfff;
+  border-radius: 0 11px 11px 0;
+  color: rgba(220, 236, 255, 0.72);
+  background: rgba(78, 196, 255, 0.08);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .workspace-panel { margin-top: 18px; border-radius: 16px; }
+  .workspace-metrics { grid-template-columns: 1fr; }
+  .workspace-metrics > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .workspace-metrics small { margin-top: 0; text-align: right; }
+}
+
+@media (max-width: 430px) {
+  .dashboard-tab-row { gap: 5px; margin-left: 0; margin-right: 0; }
+  .dashboard-tab-row button { padding: 8px 3px; font-size: 9px; }
+  .telegram-bots > div { align-items: flex-start; flex-direction: column; }
+  .telegram-bots button { width: 100%; }
+}
